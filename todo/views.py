@@ -66,3 +66,4 @@ def update(request, task_id):
     }
     return render(request, "todo/edit.html", context)
 
+
