@@ -1,4 +1,3 @@
-# views.py
 from django.shortcuts import render, redirect
 from django.http import Http404
 from django.utils.timezone import make_aware
@@ -14,6 +13,7 @@ def index(request):
             priority=request.POST['priority']
         )
         task.save()
+        return redirect('/')  # リダイレクトを追加
 
     order = request.GET.get('order', 'post')
     if order == 'due':
