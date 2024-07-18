@@ -8,58 +8,58 @@
 </head>
 
 <body>
-    <h1>Sample To Do Application</h1>
-    <p>You can submit tasks from the following form.</p>
-    <form action="{% url 'index' %}" method="post">
-        {% csrf_token %}
-        <div>
-            <label for="titleInput">Title</label><br>
-            <input id="titleInput" name="title" type="text" placeholder="Input title">
-        </div>
-        <div>
-            <label for="dueInput">Due at:</label><br>
-            <input id="dueInput" name="due_at" type="datetime-local">
-        </div>
-        <div>
-            <label for="priorityInput">Priority</label><br>
-            <select id="priorityInput" name="priority">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3" selected>3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-        </div>
-        <div>
-            <button type="submit">Submit</button>
-        </div>
-    </form>
-    <br>
+  <h1>サンプル To Do アプリケーション</h1>
+  <p>以下のフォームからタスクを追加できます。</p>
+  <form action="{% url 'index' %}" method="post">
+      {% csrf_token %}
+      <div>
+          <label for="titleInput">タイトル</label><br>
+          <input id="titleInput" name="title" type="text" placeholder="タイトルを入力してください">
+      </div>
+      <div>
+          <label for="dueInput">期限:</label><br>
+          <input id="dueInput" name="due_at" type="datetime-local">
+      </div>
+      <div>
+          <label for="priorityInput">優先度</label><br>
+          <select id="priorityInput" name="priority">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3" selected>3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+          </select>
+      </div>
+      <div>
+          <button type="submit">送信</button>
+      </div>
+  </form>
+  <br>
 
-    <div>
-        <a href="{% url 'index' %}?order=due">Sort by Due Date</a> |
-        <a href="{% url 'index' %}?order=post">Sort by Posted Date</a> |
-        <a href="{% url 'index' %}?order=priority_asc">Sort by Priority Ascending</a> |
-        <a href="{% url 'index' %}?order=priority_desc">Sort by Priority Descending</a>
-    </div>
+  <div>
+      <a href="{% url 'index' %}?order=due">期限でソート</a> |
+      <a href="{% url 'index' %}?order=post">投稿日でソート</a> |
+      <a href="{% url 'index' %}?order=priority_asc">優先度昇順でソート</a> |
+      <a href="{% url 'index' %}?order=priority_desc">優先度降順でソート</a>
+  </div>
 
-    {% for task in tasks %}
-    <div class="text">
-        <h2><a href="{% url 'detail' task.id %}">{{ task.title }}</a></h2>
-        <ul>
-            <li>Posted at: {{ task.posted_at }}</li>
-            {% if task.due_at %}
-            <li>Due at: {{ task.due_at }}</li>
-            {% endif %}
-            <li>Priority: {{ task.priority }}</li>
-            {% if task.completed %}
-            <li>Status: Completed</li>
-            {% else %}
-            <li>Status: Not Completed</li>
-            {% endif %}
-        </ul>
-    </div>
-    {% endfor %}
+  {% for task in tasks %}
+  <div class="text">
+      <h2><a href="{% url 'detail' task.id %}">{{ task.title }}</a></h2>
+      <ul>
+          <li>投稿日時: {{ task.posted_at }}</li>
+          {% if task.due_at %}
+          <li>期限: {{ task.due_at }}</li>
+          {% endif %}
+          <li>優先度: {{ task.priority }}</li>
+          {% if task.completed %}
+          <li>ステータス: 完了</li>
+          {% else %}
+          <li>ステータス: 未完了</li>
+          {% endif %}
+      </ul>
+  </div>
+  {% endfor %}
 </body>
 
 </html>
